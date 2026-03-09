@@ -1,0 +1,119 @@
+/* ===== CONFIGURAÇÕES GERAIS ===== */
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #222;
+    background-color: #ffff;
+}
+
+h1, h2, h3 {
+    color: #e0ad60;
+    text-align: center;
+}
+
+p {
+    line-height: 1.5;  /* Altura de linha paragrafo  */
+    margin:10px 0; /* Margin em cima e embaixo*/
+    text-align: center;
+}
+
+/* ===== CABEÇALHO E MENU ===== */
+header {
+    background-color: #000000;
+    color: #e0ad60;
+    padding: 20px 0;
+}
+
+.logo a{
+    text-decoration: none; /*Tira o sublinhado do link*/
+    color: white; /*Cor do texto branca*/
+    font-size: 24px; /*Tamanho da fonte*/
+    font-weight: bold;/*Espessura da fonte*/
+}
+
+.logo span{
+    color: #e0ad60;
+}
+
+/* Acessando TAG.CLASS*/
+nav.menu {
+    text-align: center;
+    margin-top: 10px; /* Margin no topo */
+}
+
+nav.menu a{
+    color: #e0ad60;
+    text-decoration: none;
+    margin:0 15px;
+    font-weight: bold;
+}
+
+nav.menu a:hover { /* Efeito de passar o mouse em cima */
+    color:#ffffff
+}
+
+/* ==== SEÇÃO PRINCIPAL (index.html) ==== */
+.hero {
+    background-color: #c56c24;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.hero h1{
+    font-size: 36px;
+    color: #fff;
+}
+
+.hero p{
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* Criando botões com hiperlinks */
+.btn-primario{
+    background-color: #e0ad60;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    border:#fff 2px solid;
+}
+
+.btn-secundario{
+    background-color: rgb(3, 3, 3);
+    color: #ebeaea;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: #fdfafa 2px solid;
+}
+
+.btn-primario:hover , .btn-secundario:hover {
+    opacity: 0.8;
+}
+
+/* ==== RODAPÉ ==== */
+footer {
+    background-color: #e0ad60;
+    color:white;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+}
+
+footer a{
+    color: #e0ad60;
+    text-decoration: none;
+}
+
+article.cardapio{
+    text-align: center;
+}
+ ul{
+    text-align: center;
+ }
+ form{
+    text-align: center;
+ }
