@@ -46,7 +46,7 @@ form.addEventListener("submit", function(event) {
     const mensagem = document.getElementById("mensagem");
 
     if (valido) {
-        mensagem.textContent = "Cadastro realizado com sucesso ☕";
+        mensagem.textContent = "Cadastro realizado com sucesso ";
         mensagem.style.color = "green";
         form.reset();
     } else {
