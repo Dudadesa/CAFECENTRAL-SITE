@@ -40,6 +40,7 @@ form.addEventListener("submit", async function(event){
         // 7. Lê a resposta que o servidor enviou de volta
         const dados = await resposta.text();
         
+    
         // 8. Mostra a resposta para o usuário
         alert(dados);
         
