@@ -1,56 +1,90 @@
-const form = document.getElementById("formCadastro");
+/*============================================================
+    1) PEGAR OS ELEMENTOS DO HTML
+  ============================================================
+*/
+//ONDE OS CARDS VAO APARECER
+const ListaCardapio = document.querySelector("#ListaCardapio");
+//CAMPO DE BUSCA
+const buscaCardapio = document.querySelector("#BuscarCardapio")
+/*============================================================
+    2)CRIAR UMA LISTA PARA GUARDAR OS Cardapio
+  ============================================================
+*/
+let Cardapio = [];
+/*============================================================
+    3) FUNÇÃO PARA CARREGAR O JSON
+  ============================================================
+*/
 
-form.addEventListener("submit", function(event) {
-    event.preventDefault(); // evita recarregar a página
+async function carregarCardapio(){
+    //BUSCA O ARQUIVO Cardapio.json
+    const resposta = await fetch("../data/Cardapio.json"); 
+    console.log(resposta);
 
-    let nome = document.getElementById("nome");
-    let email = document.getElementById("email");
-    let senha = document.getElementById("senha");
+    //transforma o JSON em dados que o js entende
+    Cardapio = await resposta.json();
 
-    let valido = true;
+    //depois de caregar, já renderiza na tela
+    renderizarCardapio(Cardapio);
+};
 
-    // LIMPAR ERROS
-    document.querySelectorAll(".erro").forEach(e => e.textContent = "");
-    document.querySelectorAll("input").forEach(i => {
-        i.classList.remove("erroInput", "sucesso");
+/*============================================================
+    4) FUNÇÃO PARA CRIAR OS CARD DOS Cardapio NA TELA
+  ============================================================
+*/
+function renderizarCardapio(lista){
+    // limpa o conteúdo antes de desenhar de novo
+    ListaCardapio.innerHTML = "";
+
+    // para cada curso da lista -> cria um card
+    lista.forEach(cardapio => {
+        // cria a tag div
+        const card = document.createElement("div");
+
+        // coloca uma class dentro da tag criada
+        card.classList.add("card");
+
+        //coloca o conteúdo dentro do card
+        card.innerHTML = `
+            <h3> ${cardapio.titulo} </h3>
+            <img src="${cardapio.img}" width="150" height="150">
+            <p> ${curso.descricao} </p>
+            <p> <strong>CH: </strong> ${cardapio.ch}</p>
+            <a href="${cardapio.url}"><button>Ver detalhes</button></a>
+        `;
+        ListaCardapio.appendChild(card);
     });
+}
 
-    // VALIDAÇÃO NOME
-    if (nome.value.trim() === "") {
-        document.getElementById("erroNome").textContent = "Digite seu nome";
-        nome.classList.add("erroInput");
-        valido = false;
-    } else {
-        nome.classList.add("sucesso");
-    }
 
-    // VALIDAÇÃO EMAIL
-    if (!email.value.includes("@")) {
-        document.getElementById("erroEmail").textContent = "Email inválido";
-        email.classList.add("erroInput");
-        valido = false;
-    } else {
-        email.classList.add("sucesso");
-    }
+/*============================================================
+    5) FUNÇÃO PARA BUSCA DE CURSO
+  ============================================================
+*/
+// Chamar uma função que captura a ação do usuário e dispara um evento
+buscaCardapio.addEventListener("input", function(){
+  // Pega o valor digitado
+  const texto = buscaCardapio.value.toLowerCase(); // pega o valor digitado no input e deixa tudo minúsculo
 
-    // VALIDAÇÃO SENHA
-    if (senha.value.length < 6) {
-        document.getElementById("erroSenha").textContent = "Mínimo 6 caracteres";
-        senha.classList.add("erroInput");
-        valido = false;
-    } else {
-        senha.classList.add("sucesso");
-    }
+  const filtrados = Cardapio.filter((cardapio) => 
+    // Para cada CURSO:
+  // curso.titulo -> acesso título (chave JSON)
+  // toLowerCase() -> padroniza comparação
+  // includes(texto) -> verifica se o texto digitado está dentro do título
+  // retorna true (entra no filtro) ou false (e ignorado)
+    curso.titulo.toLowerCase().includes(texto)
+  
+  )
 
-    // FEEDBACK FINAL
-    const mensagem = document.getElementById("mensagem");
-
-    if (valido) {
-        mensagem.textContent = "Cadastro realizado com sucesso ";
-        mensagem.style.color = "green";
-        form.reset();
-    } else {
-        mensagem.textContent = "Corrija os erros acima!";
-        mensagem.style.color = "red";
-    }
+// Reenderizar a tla com novalista filtrada
+renderizarCardapio(filtrados);
 });
+
+
+
+
+/*============================================================
+    6) INICIA TUDO
+  ============================================================
+*/
+carregarCardapio();

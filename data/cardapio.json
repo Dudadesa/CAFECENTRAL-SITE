@@ -1,0 +1,51 @@
+[
+
+    {
+        "titulo":"Cafe Expresso",
+        "img":"../img/cafeexpresso.webp",
+        "url":"../pages/cardapio.html",
+        "descricao":"Café puro e intenso, extraído sob pressão",
+        "ch": 40
+    },
+    {
+        "titulo":"Cafe Capuccino",
+        "img":"../img/cappuccino.webp",
+        "url":"../pages/cardapio.html",
+        "descricao":"Espresso com leite vaporizado e espuma cremosa",
+        "ch": 30
+    },
+    {
+        "titulo":"Cafe Latte",
+        "img":"../img/latte.webp",
+        "url":"../pages/cardapio.html",
+        "descricao":"Espresso suave com bastante leite vaporizado",
+        "ch": 80
+    }
+    {
+        "titulo":"Cafe Mocha",
+        "img":"../img/mocha.jpg",
+        "url":"../pages/cardapio.html",
+        "descricao":"Café, chocolate e leite",
+        "ch": 40
+    },
+    {
+        "titulo":"Pão de queijo",
+        "img":"../img/paodqueijo.jpg",
+        "url":"../pages/cardapio.html",
+        "descricao":"pão recheado com queijo e requeijão",
+        "ch": 30
+    },
+    {
+        "titulo":"Croissant",
+        "img":"../img/croissant.webp",
+        "url":"../pages/cardapio.html",
+        "descricao":"pao de massa folhada e amanteigado",
+        "ch": 80
+    }
+
+    
+
+       
+        
+        
+    ]

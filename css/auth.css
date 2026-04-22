@@ -1,0 +1,115 @@
+
+/* 
+   ======================================
+    ÁREA GERAL DA PÁGINA DE AUTENTICAÇÃO
+   ======================================
+*/
+
+/* Espaçamento interno na página de login/cadastro (main) -
+40px em cima e 20px nas laterais*/
+.pagina-auth {
+    padding:40px 20px ;
+}
+
+/* 
+   ======================================
+    BLOCO PRINCIPAL DO FORMULÁRIO (section)
+   ======================================
+*/
+
+.bloco-auth {
+    max-width: 500px; /* Largura máxima da caixa */
+    margin: 0 auto; /* Centraliza horizontalmente na página */
+    background-color: white;
+    padding: 30px; /* Espaçamento interno */
+    border-radius: 8px; /* Arredonda os cantos */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); 
+        /* Sombra suave para destacar o bloco */
+}
+/* Centraliza o título e coloca um espaço abaixo dele */
+.bloco-auth h1{
+    text-align: center;
+    margin-bottom: 10px;/* margem embaixo */
+}
+
+/* Centraliza o parágrafo e coloca um espaço abaixo dele */
+.text-auth {
+    text-align: center;
+    margin-bottom: 20px;/* margem embaixo */
+    color: #555;
+}
+
+/* 
+   ======================================
+    FORMULÁRIO
+   ======================================
+*/
+/* Organiza os elementos do form em coluna e 
+                coloca espaço entre eles */
+.form-auth {
+    display: flex; /* Ativa o Flexbox */
+    flex-direction: column; /* Distribui na vertical */
+    gap: 10px; /* Espaço entre os elementos label/input */
+}
+
+/* Deixa os rótulos (labels) em destaque */
+.form-auth label {
+    font-weight: bold;
+}
+
+/* Estiliza os campos de entrada do form */
+
+.form-auth input {
+    padding: 10px;
+    border: 1px solid #ccc; /* Borda solida cinza claro */
+    border-radius: 6px; 
+    font-size: 16px;
+}
+/* Efeito ao clicar no campo */
+.form-auth input:focus {
+    outline: none; /* Remove a borda padrão no navegador */
+    border-color: #e0ad60;
+}
+
+/* MENSAGEM DE RETORNO */
+
+.mensagem-auth{
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px; 
+    min-height: 20px;  /* Altura da linha - mesmo sem texto */
+}
+
+
+/* ==========================
+    LINKS DE NAVEGAÇÃO
+   ==========================
+*/
+.link-auth {
+    text-align: center;
+    margin-top: 20px;
+}
+/* Configurando o link */
+.link-auth a {
+    color: rgb(177, 106, 0);
+    font-weight: bold;
+    text-decoration: none; /* Remove o sublinhado */
+}
+
+/* Configurando o link - efeito passar mouse em cima */
+.link-auth a:hover{
+    color:rgb(99, 60, 2);
+}
+
+/* ==========================
+    BOTÃO DE LOGIN DO MENU
+   ==========================
+*/
+.btn-login{
+    background-color: rgb(255, 214, 137);
+    color:white;
+    padding: 8px 14px;
+    border-radius: 8px;
+}
+
+
