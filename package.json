@@ -7,5 +7,18 @@
     "express": "^5.2.1",
     "express-session": "^1.19.0",
     "mysql2": "^3.22.0"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "cafecentral-site",
+  "description": "Contexto Profissional",
+  "version": "1.0.0",
+  "main": "server.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

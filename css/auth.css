@@ -111,11 +111,3 @@
     padding: 8px 14px;
     border-radius: 8px;
 }
-
-/* No seu arquivo auth.css */
-.mensagem-auth {
-    margin-top: 15px;
-    font-weight: bold;
-    text-align: center;
-    min-height: 20px; /* Evita que o layout "pule" quando a mensagem aparece */
-}

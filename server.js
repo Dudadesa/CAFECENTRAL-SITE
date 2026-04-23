@@ -28,7 +28,7 @@ const app = express();
 // 7. cria  uma lista de instancia de conexoes
 const listOrigins = [
     "http://localhost:5500", // ambiente local (live server)
-    "http://127.0.01:5500", // variacao de localhost
+    "http://127.0.0.1:5500", // variacao de localhost
     "http://Dudadesa.github.io" // dominio do fronend em producao
 ]
 

@@ -136,7 +136,27 @@ nav.menu a:hover {
   gap: 25px;
   justify-items: center;
   padding: 30px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* CENTRALIZA TUDO */
+  text-align: center;
+
+ 
 }
+
+.Cardapio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 por linha */
+  gap: 30px;
+
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+  
+}
+ 
+
+
 
 .produto {
   background: #fff;
@@ -160,10 +180,185 @@ nav.menu a:hover {
 
 .produto img {
   width: 100%;
-  height: 150px;
+  height: 125px;
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 10px;
+
+  
+}
+
+.container-principal {
+  display: flex;
+  flex-wrap: wrap;       /* Faz os cards quebrarem a linha quando não couberem */
+  justify-content: center; /* Centraliza os cards horizontalmente */
+  gap: 20px;             /* Cria um espaço igual entre os cards */
+  padding: 40px;         /* Dá um respiro nas bordas da tela */
+  width: 100%;           /* Garante que ocupe a largura total */
+  box-sizing: border-box;
+}
+
+
+.card {
+  width: 300px;          /* Largura fixa para todos os cards ficarem iguais */
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;    /* Centraliza os textos e o botão dentro do card */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card img {
+  width: 100%;           /* A imagem ocupa toda a largura interna do card */
+  height: 200px;         /* Altura fixa para as fotos não ficarem desiguais */
+  object-fit: cover;     /* Corta a imagem sem distorcer */
+  border-radius: 10px;
+}
+
+.container-principal {
+  display: flex;
+  flex-wrap: wrap;      /* Permite que os cards pulem para a linha de baixo em telas menores */
+  justify-content: center; /* Centraliza o grupo de cards na tela */
+  gap: 25px;            /* Espaço entre um card e outro */
+  padding: 30px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card {
+  width: 280px;
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  
+  /* ANIMAÇÃO DE ENTRADA */
+  animation: surgir 0.6s ease-out;
+  
+  /* EFEITO AO PASSAR O MOUSE */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px); /* O card sobe um pouquinho */
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+/* Definição da animação */
+@keyframes surgir {
+  from {
+      opacity: 0;
+      transform: translateY(30px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.card button {
+  background-color: #d4a373; /* Cor de café */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.card button:hover {
+  background-color: #bc8a5f;
+}
+
+
+
+
+
+/* 1. O CONTAINER PAI: Coloca os itens lado a lado */
+.container-principal {
+  display: flex;          /* Ativa o modo horizontal */
+  flex-direction: row;    /* Garante que fiquem em linha */
+  flex-wrap: wrap;        /* Se não couber na tela, ele pula para baixo (bom para celular) */
+  justify-content: center; /* Centraliza o bloco de cards na tela */
+  gap: 20px;              /* Espaço entre os cards */
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 2. O CARD: Estilo e Animação de entrada */
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  width: 250px;           /* Largura fixa para ficarem iguais */
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  
+  /* Animação ao carregar a página */
+  animation: entradaSuave 0.6s ease-out;
+  
+  /* Transição suave para o efeito de passar o mouse */
+  transition: transform 0.3s ease;
+}
+
+/* 3. EFEITO HOVER: O card sobe quando você passa o mouse */
+.card:hover {
+  transform: translateY(-10px);
+}
+
+/* 4. KEYFRAMES: A lógica da animação */
+@keyframes entradaSuave {
+  from {
+      opacity: 0;
+      transform: scale(0.9); /* Começa um pouco menor */
+  }
+  to {
+      opacity: 1;
+      transform: scale(1);   /* Termina no tamanho real */
+  }
+}
+
+/* Ajuste das imagens dentro dos cards */
+.card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.container-cards {
+  display: flex;
+  justify-content: center; /* centraliza */
+  gap: 20px; /* espaço entre os cards */
+  flex-wrap: wrap; /* quebra linha no celular */
+}
+
+.card {
+  width: 250px;
+}
+
+
+
+
+/* Se for um texto solto, você pode tentar identificar o container */
+aside p, 
+.sidebar span {
+    display: none;
+}
+
+/* Ou, se você puder colocar uma classe nele no HTML: <p class="texto-busca">Buscar Cardapio</p> */
+.texto-busca {
+    display: none;
 }
 
 /* ===== CONTATO BONITO ===== */
@@ -354,4 +549,73 @@ footer a:hover{
   display: flex;
   align-items: center;
   gap: 15px;
+}
+
+
+/* Card principal */
+.item-card {
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  /* Transição suave para todos os efeitos */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+  border: 1px solid #333;
+  cursor: pointer;
+  overflow: hidden; /* Garante que o zoom da imagem não saia do card */
+}
+
+/* Efeito ao passar o mouse no CARD */
+.item-card:hover {
+  transform: translateY(-10px); /* Sobe o card */
+  border-color: #ffcc00; /* Muda a cor da borda */
+  box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2); /* Sombra dourada suave */
+}
+
+/* Caixa das Imagens */
+.item-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  /* Estilo da "Caixa" na imagem */
+  border: 2px solid #252525; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  transition: transform 0.5s ease; /* Preparando para o zoom */
+}
+
+/* Efeito de ZOOM na imagem quando passa o mouse */
+.item-card:hover img {
+  transform: scale(1.08); /* Aumenta levemente a imagem */
+  border-color: #ffcc00; /* A borda da imagem também brilha */
+}
+
+/* Ajuste no Título para reagir ao mouse */
+.item-card h3 {
+  margin: 10px 0;
+  transition: color 0.3s;
+}
+
+.item-card:hover h3 {
+  color: #fff; /* Título brilha em branco no hover */
+}
+
+/* Mantendo o alinhamento dos textos */
+.item-card p {
+  color: #b0b0b0;
+  font-size: 0.9rem;
+  min-height: 45px;
+  margin-bottom: 20px;
+}
+
+.preco-box {
+  border-top: 1px solid #333;
+  padding-top: 15px;
+}
+
+.preco {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #ffcc00;
 }

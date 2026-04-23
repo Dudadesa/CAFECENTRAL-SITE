@@ -1,8 +1,10 @@
-// URL da API (Ajustada sem o erro do &quot)
-const API_URL = "https://cafecentral-site.onrender.com";
-
 const formCadastro = document.getElementById("formCadastro");
 const formLogin = document.getElementById("formLogin");
+
+// URL da API (Ajustada sem o erro do &quot)
+//const API_URL = "https://cafecentral-site.onrender.com";
+const API_URL = "http://localhost:3000"
+
 
 // --- LÓGICA DE CADASTRO ---
 if (formCadastro) {
@@ -40,7 +42,7 @@ if (formCadastro) {
 
             if (!resposta.ok) {
                 mensagem.style.color = "red";
-                mensagem.textContent = dados.mensagem || dados.erro;
+                mensagem.textContent = dados.mensagem || dados.error;
                 return;
             }
 
