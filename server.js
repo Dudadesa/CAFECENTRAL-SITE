@@ -36,7 +36,7 @@ const httpServer = createServer(app)
 const listOrigins = [
     "http://localhost:5500", // ambiente local (live server)
     "http://127.0.0.1:5500", // variacao de localhost
-    "http://Dudadesa.github.io" // dominio do fronend em producao
+    "https://dudadesa.github.io" // dominio do frontend em producao
 ]
 
 // 8. Ativa o CORS - libera a comunicação entre front-end e back-end
