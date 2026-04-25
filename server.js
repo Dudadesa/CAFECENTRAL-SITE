@@ -19,11 +19,18 @@ const session = require("express-session");
 // 4. importa o bcryptjs -  para criptografia e compara senhas 
 const bcrypt = require("bcryptjs");
 
+// 4.1 importa o jsonwebtoken - para gerar e verificar tokens JWT
+const jwt = require("jsonwebtoken");
+const JWT_SECRET = process.env.JWT_SECRET;
+
 // 5. importa a conexao com o banco de dados
-   const pool = require("./db.js");
+const pool = require("./db.js");
+
+const { createServer } = require("http");
 
 // 6. Cria o servidor (como ligar um pc por ex)
 const app = express();
+const httpServer = createServer(app)
 
 // 7. cria  uma lista de instancia de conexoes
 const listOrigins = [
@@ -74,12 +81,33 @@ app.use(session(sessionConfig)) // configura a sessao no servidor
 
 /* 
 ===============================================
-2 PARTE - CRIAR ROTA E INICIAR
+2 PARTE - MIDDLEWARE DE AUTENTICAÇÃO JWT
+===============================================
+*/
+function autenticar(req, res, next) {
+    const authHeader = req.headers["authorization"];
+    const token = authHeader && authHeader.split(" ")[1]; // Bearer <token>
+
+    if (!token) {
+        return res.status(401).json({ erro: "Acesso negado. Token nao fornecido." });
+    }
+
+    try {
+        const decoded = jwt.verify(token, JWT_SECRET);
+        req.usuario = { id: decoded.id, nome: decoded.nome, email: decoded.email };
+        next();
+    } catch {
+        return res.status(401).json({ erro: "Token invalido ou expirado." });
+    }
+}
+
+/* 
+===============================================
+3 PARTE - CRIAR ROTA E INICIAR
 ===============================================
 */
 // 1. Define a rota POST "/mensagem"
-// Quando o formulário enviar os dados para /mensagem, essa função roda
-app.post("/mensagem", (req,res) => {
+app.post("/mensagem", autenticar, (req,res) => {
     try{
      //7. req.body contém os dados enviados pelo formulário
         //(nome,email, mensagem)
@@ -117,39 +145,46 @@ app.post("/cadastro",  async(req,res) => {
 
         const{nome,email,senha} = req.body // forma estruturada
 
-        if("!nome || !email || !senha"){
-
+        if(!nome || !email || !senha){
             return res.status(400).json({erro:"Preencha todos os campos"});
-        }
-            //Crio um arraw[rows] e guardo dentro o resultado do select
-            const [rows] = await pool.execute( //consulta no banco
-            "SELECT id FROM tb_usuario WHERE email=?",[email] // Busca se o e-mail existe no banco e retorna o id
+        }   
 
-            );
+        console.log("Dados recebidos:", {nome, email, senha});
+        //Crio um arraw[rows] e guardo dentro o resultado do select
+        const [rows] = await pool.execute( //consulta no banco
+        "SELECT id FROM tb_usuario WHERE email=?",[email] // Busca se o e-mail existe no banco e retorna o id
+
+        );
         
+        console.log("Resultado da consulta:", rows);
         if(rows.length > 0){
-        return res.status(409).json({erro: "E-mail ja cadastrado"})
-
+            return res.status(409).json({erro: "E-mail ja cadastrado"})
         }
-        //criptgrafa a senha e uarda dentro da variavel
-        const senhaHash = await bcrypt.hash(senha,10) //gera o hash da senha com o custo 10(mais seguro)
 
-        //inserir os dados no banco de dados
-         await pool.execute(//executa o INSERT no banco
-        "INSERT INTO tb_usarios(nome,email,senha) VALUES(?,?,?)",
-            [nome,email,senhaHash]  //substitui os ? pelos valores reais
-            );
-            
+        console.log("E-mail nao encontrado, prosseguindo com o cadastro");
+        const senhaHash = await bcrypt.hash(senha,10)
+        console.log("Senha criptografada:", senhaHash);
+
+        const [resultado] = await pool.execute(
+            "INSERT INTO tb_usuario(nome,email,senha) VALUES(?,?,?)",
+            [nome, email, senhaHash]
+        );
+
+        const novoUsuario = { id: resultado.insertId, nome, email };
+
+        const token = jwt.sign(novoUsuario, JWT_SECRET, { expiresIn: "1h" });
+
+        res.status(201).json({
+            mensagem: "Usuario cadastrado com sucesso!",
+            token,
+            usuario: novoUsuario
+        });
     }catch(error){
         	//retorna 500 se o servidor
         console.error(error); // o erro aperce completo permitindo ver exaatamente oq falhou
         res.status(500).json({erro: "Erro ao cadastrar usuario"})
     }
 })
-
-
-
-
 
 // 2. Define a rota POST "/login"
 // aponta para login.html
@@ -158,11 +193,10 @@ app.post("/login",  async(req,res) => {
         //const email = req.body.email // forma manual
         //const senha = req.body.senha
 
-        const{nemail,senha} = req.body // forma estruturada
+        const{ email, senha } = req.body // forma estruturada
 
-        if("!nome || !email || !senha"){
-
-            return res.status(400).json({erro:"Preencha todos os campos"});
+        if(!email || !senha) {
+            return res.status(400).json({ erro:"Preencha todos os campos" });
         }
             //Crio um arraw[rows] e guardo dentro o resultado do select
             const [rows] = await pool.execute( //consulta no banco
@@ -170,32 +204,36 @@ app.post("/login",  async(req,res) => {
 
             );
         
+        console.log("Resultado da consulta:", rows);
         if(rows.length == 0){
-        return res.status(401).json({erro: "Usuario nao encontrado"})
-
+            return res.status(404).json({erro: "Usuario nao encontrado"})
         }
 
         const usuario = rows[0]//pega o primeiro (e unico) resultado de consulta
 
 
         //descriptgrafa a senha e guarda dentro da variavel
-        const senhaCorreta = await bcrypt.compare(senha,usuario.senha)
+        const senhaCorreta = await bcrypt.compare(senha, usuario.senha)
         //compara a senha digitada com a senha hash salvo no banco (true/false)
 
         if(!senhaCorreta){
             //senha hash for diferente da senha digitada
-            return res.status(401).json({ erro: "Senha invalida"}); // 401 - acesso nao autorizado
+            return res.status(400).json({ erro: "Senha invalida"}); // 400 - erro de requisicao
         };
 
-        req.session.usuario = {
-            //cria a sessao no servidor com os dados do usuario
-            id: usuario.id, //ID interno do usuario
-            nome: usuario.nome,// nome para exibir  na interface
-            email: usuario.email// email para referencia futura
-        }
+        const dadosUsuario = {
+            id: usuario.id,
+            nome: usuario.nome,
+            email: usuario.email
+        };
 
-        res.json({mensagem: "Login relizado com sucesso!"});
-        //status=200
+        const token = jwt.sign(dadosUsuario, JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN });
+
+        res.json({
+            mensagem: "Login realizado com sucesso!",
+            token,
+            usuario: dadosUsuario
+        });
 
        
     }catch(error){
@@ -206,32 +244,15 @@ app.post("/login",  async(req,res) => {
 })
 
 
-// 4. Define a rota get "/me" - verificar sessão
-app.get("/me", (req, res) => {
-    if(!req.session.usuario){
-        return res.status(401).json({logado:false});
-    }
-
-    res.json({
-        logado:true, // confirma que esta logado
-        usuario: req.session.usuario // devolve os dados do usuário (nome,email,id)
-    })
-});
-
-
-// 5. Define a rota post "/logout" - encerrar sessao
-app.post("/logout", (req, res) => {
-    req.session.destroy(() => {
-        res.clearCookie("cafecentral.sid");
-        res.json({mensagem: "Logout realizado"});
-    });
-
+// 4. Define a rota get "/me" - valida o token e retorna dados do usuário
+app.get("/me", autenticar, (req, res) => {
+    res.json({ logado: true, usuario: req.usuario });
 });
 
 
 
 // 9. Inicia o Servidor na PORTA 3000
 // Depois, o servidor fica "ouvindo" por novas mensagens
-app.listen(3000, () => {
+httpServer.listen(3000, () => {
     console.log("Servidor rodando em http://localhost:3000");
 });

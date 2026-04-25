@@ -27,26 +27,31 @@ form.addEventListener("submit", async function(event){
     ===============================================
     */
     try{
+        const token = localStorage.getItem("token");
+
         // 6. Envia os dados para o servidor usando fetch()
         const resposta = await fetch("http://localhost:3000/mensagem",{
-            method:"POST", // POST = estamos enviando dados
+            method:"POST",
             headers: {
-                "Content-Type":"application/json" // avisa que formato é JSON
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token
             },
-            body: JSON.stringify(novaMensagem) 
-                // Converte o objeto para texto JSON
+            body: JSON.stringify(novaMensagem)
         });
         
         // 7. Lê a resposta que o servidor enviou de volta
-        const dados = await resposta.text();
-        
+        const dados = await resposta.json();
+
+        if (!resposta.ok) {
+            alert(dados.erro || "Erro ao enviar mensagem.");
+            return;
+        }
     
         // 8. Mostra a resposta para o usuário
-        alert(dados);
+        alert(dados.mensagem);
         
-        // 9.  Limpa os campos do formulário após o envio
+        // 9. Limpa os campos do formulário após o envio
         form.reset();
-        
         
         }catch(erro){
             // 10. Se algo der errado, avisa o usuário

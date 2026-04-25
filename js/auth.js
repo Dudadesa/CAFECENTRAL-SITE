@@ -42,19 +42,32 @@ if (formCadastro) {
 
             if (!resposta.ok) {
                 mensagem.style.color = "red";
-                mensagem.textContent = dados.mensagem || dados.error;
+                mensagem.textContent = dados.erro || dados.mensagem || "Erro ao cadastrar.";
                 return;
             }
 
+            localStorage.setItem("token", dados.token);
+            localStorage.setItem("usuario", JSON.stringify(dados.usuario));
+
             mensagem.style.color = "green";
-            mensagem.textContent = "Cadastro realizado! Bem-vindo ao Café Central.";
-            formCadastro.reset();
+            mensagem.textContent = "Cadastro realizado! Redirecionando...";
+
+            setTimeout(() => {
+                window.location.href = "../pages/cardapio.html";
+            }, 1500);
 
         } catch (error) {
             console.error(error);
             mensagem.textContent = "Erro ao conectar com o servidor do Café.";
         }
     });
+}
+
+// --- LÓGICA DE LOGOUT ---
+function logout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("usuario");
+    window.location.href = "../pages/login.html";
 }
 
 // --- LÓGICA DE LOGIN ---
@@ -85,23 +98,19 @@ if (formLogin) {
 
             if (!resposta.ok) {
                 mensagem.style.color = "red";
-                mensagem.textContent = dados.mensagem || "Erro ao fazer login.";
-                window.location.href = "../pages/cardapio.html"; 
+                mensagem.textContent = dados.erro || dados.mensagem || "Erro ao fazer login.";
                 return;
             }
 
-            // SALVAR DADOS NO NAVEGADOR
-            // Salva o token para o usuário continuar logado
             localStorage.setItem("token", dados.token);
             localStorage.setItem("usuario", JSON.stringify(dados.usuario));
 
             mensagem.style.color = "green";
             mensagem.textContent = "Login efetuado! Redirecionando...";
 
-            // Redireciona para o cardápio após 1.5 segundos
-            if(resposta.ok) {
-                window.location.href = "../pages/cardapio.html"; 
-            };
+            setTimeout(() => {
+                window.location.href = "../pages/cardapio.html";
+            }, 1500);
 
         } catch (error) {
             console.error(error);
