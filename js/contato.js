@@ -30,7 +30,10 @@ form.addEventListener("submit", async function(event){
         const token = localStorage.getItem("token");
 
         // 6. Envia os dados para o servidor usando fetch()
-        const resposta = await fetch("http://localhost:3000/mensagem",{
+        const API_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+            ? "http://localhost:3000"
+            : "https://cafecentral-site.onrender.com";
+        const resposta = await fetch(`${API_URL}/mensagem`, {
             method:"POST",
             headers: {
                 "Content-Type": "application/json",
