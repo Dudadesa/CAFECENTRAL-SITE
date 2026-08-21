@@ -11,15 +11,45 @@ body{
   min-height: 100vh;
 }
 
-h1, h2, h3 {
+h1,h3 {
+  color: #000000;
+  text-align: center;
+  font-weight: bold;
+}
+
+h2 {
+  color: #ffffff;
+  text-align: center;
+  font-weight: bold;
+}
+
+h4 {
   color: #c8a96a;
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+ul {
   text-align: center;
 }
 
 p {
+  color: #000000;
   line-height: 1.5;
-  margin:10px 0;
+  margin:30px 0;
   text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.p2 {
+  color: #ffffff;
+  line-height: 1.5;
+  margin:30px 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 /* ===== CABEÇALHO ===== */
@@ -84,15 +114,17 @@ nav.menu a:hover {
   border-radius: 8px;
   text-decoration: none;
   border:none;
+  font-weight: bold;
 }
 
 .btn-secundario{
-  background-color: #1a1a1a;
-  color: #fff;
+  background-color: #ffffff;
+  color: #030303;
   padding: 10px 20px;
   border-radius: 8px;
   text-decoration: none;
   border:none;
+  font-weight: bold;
 }
 
 .btn-primario:hover , .btn-secundario:hover {
@@ -361,13 +393,13 @@ footer a:hover{
 }
 
 .btn-login {
-  background-color: #c8a96a;
-  color: #000;
-  padding: 6px 14px;
-  border-radius: 6px;
+  background-color: #030303;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 8px;
   text-decoration: none;
+  border:none;
   font-weight: bold;
-  transition: 0.3s;
 }
 
 .menu {
@@ -483,4 +515,34 @@ aside p,
 .btn-cardapio:hover {
   background-color: #8b6f3d;
   color: #fff;
+}
+
+/* ===== SEÇÃO QUALIDADES ===== */
+
+.qualidades {
+  padding: 40px 20px;
+}
+
+.qualidades h2 {
+  margin-bottom: 25px;
+}
+
+.qualidade-card {
+  background-color: #c8a96a;
+  border-radius: 10px;
+  padding: 20px 30px;
+  max-width: 900px;
+  margin: 0 auto 20px auto;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.qualidade-card h3 {
+  color: #1a1a1a;
+  margin: 0 0 8px 0;
+}
+
+.qualidade-card p {
+  color: #2b2b2b;
+  margin: 0;
 }
