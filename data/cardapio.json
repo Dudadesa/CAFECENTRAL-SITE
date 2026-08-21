@@ -1,48 +1,61 @@
 [
+    {
+        "id": "1",
+        "titulo": "Cafe Espresso",
+        "img": "cafeexpresso.webp",
+        "descricao": "Café puro e intenso, extraído sob pressão",
+        "R$": 5,
+        "objetivo": "Oferecer um café puro e intenso para quem busca energia e sabor marcante.",
+        "publico": "Indicados para clientes que preferem um café tradicional e forte."
+      },
+
+      {
+        "id": "2",
+        "titulo": "Cafe Capuccino",
+        "img": "cappuccino.webp",
+        "descricao": "Espresso com leite vaporizado e espuma cremosa",
+        "R$": 7,
+        "objetivo": "Proporcionar uma bebida equilibrada com café, leite vaporizado e espuma cremosa.",
+        "publico": "Indicado para clientes que gostam de um café mais suave e cremoso."
+      },
 
     {
-        "titulo":"Cafe Expresso",
-        "img":"../img/cafeexpresso.webp",
-        "url":"../pages/cardapio.html",
-        "descricao":"Café puro e intenso, extraído sob pressão",
-        "R$": 5
-    },
+        "id": "3",
+        "titulo": "Café Latte",
+        "img": "latte.webp",
+        "descricao": "Espresso suave com bastante leite vaporizado",
+        "R$": 8,
+        "objetivo": "Servir uma opção leve, com maior quantidade de leite e sabor delicado.",
+        "publico": "Indicado para clientes que preferem bebidas menos intensas e mais suaves."
+      },
+   
     {
-        "titulo":"Cafe Capuccino",
-        "img":"../img/cappuccino.webp",
-        "url":"../pages/cardapio.html",
-        "descricao":"Espresso com leite vaporizado e espuma cremosa",
-        "R$": 7
-    },
-    {
-        "titulo":"Cafe Latte",
-        "img":"../img/latte.webp",
-        "url":"../pages/cardapio.html",
-        "descricao":"Espresso suave com bastante leite vaporizado",
-        "R$": 8
-    },
-    {
-        "titulo":"Cafe Mocha",
-        "img":"../img/mocha.jpg",
-        "url":"../pages/cardapio.html",
-        "descricao":"Café, chocolate e leite",
-        "R$": 8
-    },
-    {
-        "titulo":"Pão de queijo",
-        "img":"../img/paodqueijo.jpg",
-        "url":"../pages/cardapio.html",
-        "descricao":"pão recheado com queijo e requeijão",
-        "R$": 4
-    },
-    {
-        "titulo":"Croissant",
-        "img":"../img/croissant.webp",
-        "url":"../pages/cardapio.html",
-        "descricao":"pao de massa folhada e amanteigado",
-        "R$": 6
-    }
+        "id": "4",
+        "titulo": "Cafe Mocha",
+        "img": "mocha.jpg",
+        "descricao": "Café, chocolate e leite",
+        "R$": 8,
+        "objetivo": "Combinar café, leite e chocolate para criar uma bebida doce e saborosa.",
+        "publico": "Indicados para clientes que apreciam cafés com toque de chocolate."
+      },
+     
+      {
+        "id": "5",
+        "titulo": "Pão de queijo",
+        "img": "paodqueijo.jpg",
+        "descricao": "pão recheado com queijo e requeijão",
+        "R$": 4,
+        "objetivo": "Oferecer um lanche rápido, macio e recheado, ideal para acompanhar o café.",
+        "publico": "Indicados para clientes que procuram um lanche prático e típico brasileiro."
+      },
 
-        
+      {
+        "id": "6",
+        "titulo": "Croissant",
+        "img": "croissant.webp",
+        "descricao": "pao de massa folhada e amanteigado",
+        "R$": 5,
+        "objetivo": "Disponibilizar um salgado leve e amanteigado para qualquer momento do dia.",
+        "publico": "Indicados para clientes que que gostam de massas folhadas e lanches rápidos."
+      }
     ]
-

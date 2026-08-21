@@ -45,10 +45,10 @@ function renderizarCardapio(lista){
         //coloca o conteúdo dentro do card
         card.innerHTML = `
             <h3> ${cardapio.titulo} </h3>
-            <img src="${cardapio.img}" width="150" height="150">
+            <img src="../img/${cardapio.img}" width="150" height="150">
             <p> ${cardapio.descricao} </p>
-            <p> <strong>R$: </strong> ${cardapio.R$}</p>
-            <a href="${cardapio.url}"><button>Ver detalhes</button></a>
+            <p> <strong>R$: </strong> ${cardapio["R$"]}</p>
+            <a href="detalhes-cardapio.html?id=${cardapio.id}"><button>Ver detalhes</button></a>
         `;
         ListaCardapio.appendChild(card);
     });

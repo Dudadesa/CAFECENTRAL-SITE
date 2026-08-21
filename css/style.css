@@ -47,7 +47,7 @@ nav.menu {
 }
 
 nav.menu a{
-  color: #c8a96a;
+  color: #c8a96a;;
   text-decoration: none;
   margin:0 15px;
   font-weight: bold;
@@ -56,6 +56,16 @@ nav.menu a{
 
 nav.menu a:hover {
   color:#ffffff;
+}
+
+.btn-cadastro {
+  background-color: #423927;
+  color: #c8a96a;
+  padding: 6px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
 /* ===== HERO ===== */
@@ -121,14 +131,6 @@ nav.menu a:hover {
   }
 }
 
-/* ===== CARDS ===== */
-.card {
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-}
-
 /* ===== CARDÁPIO ===== */
 .cardapio {
   display: grid;
@@ -140,8 +142,6 @@ nav.menu a:hover {
   flex-direction: column;
   align-items: center; /* CENTRALIZA TUDO */
   text-align: center;
-
- 
 }
 
 .Cardapio-grid {
@@ -152,30 +152,33 @@ nav.menu a:hover {
   max-width: 1000px;
   margin: 0 auto;
   text-align: center;
-  
 }
- 
 
-
+/* ===== CARDS DO CARDAPIO (fundo preto) ===== */
 
 .produto {
-  background: #fff;
+  background: #1f1f1f;
   padding: 15px;
   border-radius: 12px;
-
   border: 2px solid #c8a96a;
-
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   width: 100%;
   max-width: 230px;
-
   transition: 0.3s;
 }
 
 .produto:hover{
   transform: translateY(-6px);
   border-color: #8b6f3d;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.5);
+}
+
+.produto h3 {
+  color: #c8a96a;
+}
+
+.produto p {
+  color: #e7c78a;
 }
 
 .produto img {
@@ -184,193 +187,39 @@ nav.menu a:hover {
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 10px;
-
-  
 }
 
-.container-principal {
-  display: flex;
-  flex-wrap: wrap;       /* Faz os cards quebrarem a linha quando não couberem */
-  justify-content: center; /* Centraliza os cards horizontalmente */
-  gap: 20px;             /* Cria um espaço igual entre os cards */
-  padding: 40px;         /* Dá um respiro nas bordas da tela */
-  width: 100%;           /* Garante que ocupe a largura total */
-  box-sizing: border-box;
-}
-
-
-.card {
-  width: 300px;          /* Largura fixa para todos os cards ficarem iguais */
-  background-color: white;
-  border-radius: 15px;
-  padding: 20px;
-  text-align: center;    /* Centraliza os textos e o botão dentro do card */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.card img {
-  width: 100%;           /* A imagem ocupa toda a largura interna do card */
-  height: 200px;         /* Altura fixa para as fotos não ficarem desiguais */
-  object-fit: cover;     /* Corta a imagem sem distorcer */
-  border-radius: 10px;
-}
-
-.container-principal {
-  display: flex;
-  flex-wrap: wrap;      /* Permite que os cards pulem para a linha de baixo em telas menores */
-  justify-content: center; /* Centraliza o grupo de cards na tela */
-  gap: 25px;            /* Espaço entre um card e outro */
-  padding: 30px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.card {
-  width: 280px;
-  background-color: #fff;
-  border-radius: 15px;
-  padding: 15px;
-  text-align: center;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  
-  /* ANIMAÇÃO DE ENTRADA */
-  animation: surgir 0.6s ease-out;
-  
-  /* EFEITO AO PASSAR O MOUSE */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-10px); /* O card sobe um pouquinho */
-  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-}
-
-/* Definição da animação */
-@keyframes surgir {
-  from {
-      opacity: 0;
-      transform: translateY(30px);
-  }
-  to {
-      opacity: 1;
-      transform: translateY(0);
-  }
-}
-
-.card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 15px;
-}
-
-.card button {
-  background-color: #d4a373; /* Cor de café */
-  color: white;
+.produto button {
+  background-color: #c8a96a;
+  color: #1a1a1a;
   border: none;
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 6px;
+  font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: 0.3s;
 }
 
-.card button:hover {
-  background-color: #bc8a5f;
+.produto button:hover {
+  background-color: #8b6f3d;
+  color: #fff;
 }
 
-
-
-
-
-/* 1. O CONTAINER PAI: Coloca os itens lado a lado */
-.container-principal {
-  display: flex;          /* Ativa o modo horizontal */
-  flex-direction: row;    /* Garante que fiquem em linha */
-  flex-wrap: wrap;        /* Se não couber na tela, ele pula para baixo (bom para celular) */
-  justify-content: center; /* Centraliza o bloco de cards na tela */
-  gap: 20px;              /* Espaço entre os cards */
-  padding: 20px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* 2. O CARD: Estilo e Animação de entrada */
-.card {
-  background-color: #fff;
-  border-radius: 12px;
-  width: 250px;           /* Largura fixa para ficarem iguais */
-  padding: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  text-align: center;
-  
-  /* Animação ao carregar a página */
-  animation: entradaSuave 0.6s ease-out;
-  
-  /* Transição suave para o efeito de passar o mouse */
-  transition: transform 0.3s ease;
-}
-
-/* 3. EFEITO HOVER: O card sobe quando você passa o mouse */
-.card:hover {
-  transform: translateY(-10px);
-}
-
-/* 4. KEYFRAMES: A lógica da animação */
-@keyframes entradaSuave {
-  from {
-      opacity: 0;
-      transform: scale(0.9); /* Começa um pouco menor */
-  }
-  to {
-      opacity: 1;
-      transform: scale(1);   /* Termina no tamanho real */
-  }
-}
-
-/* Ajuste das imagens dentro dos cards */
-.card img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.container-cards {
-  display: flex;
-  justify-content: center; /* centraliza */
-  gap: 20px; /* espaço entre os cards */
-  flex-wrap: wrap; /* quebra linha no celular */
-}
-
-.card {
-  width: 250px;
-}
-
-
-
-
-/* Se for um texto solto, você pode tentar identificar o container */
-aside p, 
-.sidebar span {
-    display: none;
-}
-
-/* Ou, se você puder colocar uma classe nele no HTML: <p class="texto-busca">Buscar Cardapio</p> */
-.texto-busca {
-    display: none;
+.produto a {
+  text-decoration: none;
+  display: inline-block;
 }
 
 /* ===== CONTATO BONITO ===== */
 
 .contato {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 50px 20px;
 }
 
-/* CAIXA */
 .contato form {
   background: #1f1f1f;
   padding: 30px;
@@ -381,21 +230,18 @@ aside p,
   box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
-/* TÍTULO */
 .contato h2 {
   text-align: center;
   color: #c8a96a;
   margin-bottom: 20px;
 }
 
-/* LABEL */
 .contato label {
   color: #ddd;
   margin-top: 10px;
   display: block;
 }
 
-/* INPUTS */
 .contato input,
 .contato textarea {
   width: 100%;
@@ -413,13 +259,11 @@ aside p,
   border-color: #c8a96a;
 }
 
-/* TEXTAREA */
 .contato textarea {
   resize: none;
   height: 120px;
 }
 
-/* BOTÃO */
 .contato button {
   margin-top: 20px;
   width: 100%;
@@ -438,20 +282,6 @@ aside p,
 .contato button:hover {
   background-color: #8b6f3d;
   color: #fff;
-}
-
-.contato {
-  display: flex;
-  flex-direction: column; /* empilha título + form */
-  align-items: center; /* centraliza horizontal */
-  justify-content: center;
-  padding: 50px 20px;
-}
-
-.contato h2 {
-  text-align: center;
-  color: #c8a96a;
-  margin-bottom: 20px;
 }
 
 /* ===== BOTÃO CURSO ===== */
@@ -489,7 +319,6 @@ footer a:hover{
   text-decoration: underline;
 }
 
-
 .sobre {
   max-width: 800px;
   margin: 40px auto;
@@ -500,7 +329,6 @@ footer a:hover{
 
   box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
-
 
 .sobre h2 {
   color: #c8a96a;
@@ -517,9 +345,8 @@ footer a:hover{
   text-align: center;
 }
 
-
 .sobre ul {
-  list-style: none; /* tira bolinha padrão */
+  list-style: none;
   padding: 0;
   margin-top: 15px;
 }
@@ -533,7 +360,6 @@ footer a:hover{
   color: #fff;
 }
 
-
 .btn-login {
   background-color: #c8a96a;
   color: #000;
@@ -544,78 +370,117 @@ footer a:hover{
   transition: 0.3s;
 }
 
-
 .menu {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
+/* Se for um texto solto, você pode tentar identificar o container */
+aside p,
+.sidebar span {
+    display: none;
+}
 
-/* Card principal */
-.item-card {
-  background-color: #1a1a1a;
-  border-radius: 12px;
-  padding: 20px;
-  text-align: center;
-  /* Transição suave para todos os efeitos */
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+.texto-busca {
+    display: none;
+}
+
+/* ===== DETALHES DO CARDAPIO ===== */
+
+.container-detalhe-cardapio {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 0 20px;
+  flex: 1;
+}
+
+.detalhe-card {
+  background-color: #1f1f1f;
+  border-radius: 16px;
+  padding: 40px 30px;
   border: 1px solid #333;
-  cursor: pointer;
-  overflow: hidden; /* Garante que o zoom da imagem não saia do card */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  text-align: center;
 }
 
-/* Efeito ao passar o mouse no CARD */
-.item-card:hover {
-  transform: translateY(-10px); /* Sobe o card */
-  border-color: #ffcc00; /* Muda a cor da borda */
-  box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2); /* Sombra dourada suave */
-}
-
-/* Caixa das Imagens */
-.item-card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  /* Estilo da "Caixa" na imagem */
-  border: 2px solid #252525; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  transition: transform 0.5s ease; /* Preparando para o zoom */
-}
-
-/* Efeito de ZOOM na imagem quando passa o mouse */
-.item-card:hover img {
-  transform: scale(1.08); /* Aumenta levemente a imagem */
-  border-color: #ffcc00; /* A borda da imagem também brilha */
-}
-
-/* Ajuste no Título para reagir ao mouse */
-.item-card h3 {
-  margin: 10px 0;
-  transition: color 0.3s;
-}
-
-.item-card:hover h3 {
-  color: #fff; /* Título brilha em branco no hover */
-}
-
-/* Mantendo o alinhamento dos textos */
-.item-card p {
-  color: #b0b0b0;
-  font-size: 0.9rem;
-  min-height: 45px;
-  margin-bottom: 20px;
-}
-
-.preco-box {
-  border-top: 1px solid #333;
-  padding-top: 15px;
-}
-
-.preco {
-  font-size: 1.4rem;
+.detalhe-badge {
+  display: inline-block;
+  background-color: #c8a96a;
+  color: #1a1a1a;
   font-weight: bold;
-  color: #ffcc00;
+  font-size: 13px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+}
+
+.detalhe-card h1 {
+  color: #e7c78a;
+  margin: 10px 0;
+}
+
+.detalhe-card > img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid #c8a96a;
+  margin: 15px 0;
+}
+
+.detalhe-descricao {
+  color: #ddd;
+  font-size: 16px;
+}
+
+.preco-detalhe {
+  background-color: #2b2b2b;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 25px 0;
+}
+
+.preco-detalhe .infoLabel {
+  color: #c8a96a;
+  margin: 0;
+}
+
+.preco-detalhe .infoValor {
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+  margin: 5px 0 0 0;
+}
+
+.secaoDetalhe {
+  margin: 25px 0;
+}
+
+.secaoDetalhe .infoLabel {
+  color: #c8a96a;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.secaoDetalhe .infoValor {
+  color: #ddd;
+  margin: 0;
+}
+
+.btn-cardapio {
+  display: block;
+  margin-top: 30px;
+  padding: 14px;
+  background-color: #c8a96a;
+  color: #1a1a1a;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.btn-cardapio:hover {
+  background-color: #8b6f3d;
+  color: #fff;
 }
