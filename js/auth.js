@@ -5,6 +5,19 @@ const API_URL = window.location.hostname === "localhost" || window.location.host
     ? "http://localhost:3000"
     : "https://cafecentral-site.onrender.com";
 
+// --- FUNÇÕES DE VALIDAÇÃO ---
+function validarNome(nome) {
+    // Apenas letras e espaços (sem números)
+    const regexNome = /^[a-záéíóúâêôãõçA-ZÁÉÍÓÚÂÊÔÃÕÇ\s]+$/;
+    return regexNome.test(nome);
+}
+
+function validarEmail(email) {
+    // Validar que tenha @ e .com
+    const regexEmail = /^[^\s@]+@[^\s@]+\.com$/;
+    return regexEmail.test(email);
+}
+
 
 // --- LÓGICA DE CADASTRO ---
 if (formCadastro) {
@@ -22,6 +35,18 @@ if (formCadastro) {
         if (!nome || !email || !senha || !confirmaSenha) {
             mensagem.style.color = "red";
             mensagem.textContent = "Preencha todos os campos do Café Central!";
+            return;
+        }
+
+        if (!validarNome(nome)) {
+            mensagem.style.color = "red";
+            mensagem.textContent = "Nome não pode conter números!";
+            return;
+        }
+
+        if (!validarEmail(email)) {
+            mensagem.style.color = "red";
+            mensagem.textContent = "Email deve conter @ e terminar com .com!";
             return;
         }
 
@@ -84,6 +109,12 @@ if (formLogin) {
         if (!email || !senha) {
             mensagem.style.color = "red";
             mensagem.textContent = "Por favor, informe seu e-mail e senha.";
+            return;
+        }
+
+        if (!validarEmail(email)) {
+            mensagem.style.color = "red";
+            mensagem.textContent = "Email deve conter @ e terminar com .com!";
             return;
         }
 
